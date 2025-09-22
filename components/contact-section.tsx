@@ -1,13 +1,16 @@
 "use client"
 
 import type React from "react"
+import { useState } from "react"
+// Importamos la conexión a Supabase que creaste.
+import { supabase } from "@/lib/supabaseClient" 
 
+// Importaciones de los componentes de la interfaz de usuario.
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone, Send } from "lucide-react"
-import { useState } from "react"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,17 +19,46 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-  }
+  // Nuevos estados para manejar el envío y el estado del formulario.
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
+  }
+
+  // La función principal que se conecta a Supabase.
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    setIsSubmitting(true)
+    setStatus("Enviando mensaje...")
+
+    try {
+      // Usamos el método `from` para seleccionar la tabla y `insert` para guardar los datos.
+      const { data, error } = await supabase
+        .from("contact_messages")
+        .insert([formData])
+
+      if (error) {
+        throw error
+      }
+
+      setStatus("¡Mensaje enviado con éxito! Te contactaré pronto.")
+      setFormData({ name: "", email: "", message: "" }) // Limpiamos el formulario.
+
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error)
+      setStatus("Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.")
+    } finally {
+      setTimeout(() => {
+        setIsSubmitting(false)
+        setStatus("")
+      }, 3000)
+    }
   }
 
   return (
@@ -42,7 +74,7 @@ export function ContactSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+          {/* Columna de la izquierda: Información de contacto */}
           <div className="space-y-8 animate-fade-in-up">
             <Card className="bg-card border-border">
               <CardHeader>
@@ -55,7 +87,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-muted-foreground">alex@example.com</p>
+                    <p className="text-muted-foreground">wellingtonbazurto.dev@gmail.com</p>
                   </div>
                 </div>
 
@@ -65,7 +97,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Teléfono</p>
-                    <p className="text-muted-foreground">+34 123 456 789</p>
+                    <p className="text-muted-foreground">+34 652167668</p>
                   </div>
                 </div>
 
@@ -87,7 +119,7 @@ export function ContactSection() {
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start space-x-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Más de 5 años de experiencia en desarrollo full-stack</span>
+                    <span>Experiencia en desarrollo full-stack</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-primary mt-1">•</span>
@@ -106,7 +138,7 @@ export function ContactSection() {
             </Card>
           </div>
 
-          {/* Contact Form */}
+          {/* Columna de la derecha: Formulario de contacto */}
           <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <Card className="bg-card border-border">
               <CardHeader>
@@ -165,10 +197,17 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 transition-all duration-200 hover:scale-105"
+                    disabled={isSubmitting}
                   >
                     <Send className="h-4 w-4 mr-2" />
-                    Enviar Mensaje
+                    {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                   </Button>
+                  
+                  {status && (
+                    <p className={`text-center text-sm ${status.includes("éxito") ? "text-green-500" : "text-red-500"}`}>
+                      {status}
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>

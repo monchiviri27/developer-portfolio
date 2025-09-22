@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="mb-6 md:mb-0">
-            <h3 className="text-xl font-bold text-foreground mb-2">Alex Rodríguez</h3>
+            <h3 className="text-xl font-bold text-foreground mb-2">Wellington Bazurto</h3>
             <p className="text-muted-foreground">Desarrollador Full Stack</p>
           </div>
 
@@ -38,7 +38,7 @@ export function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground flex items-center justify-center gap-2">
-            Hecho con <Heart className="h-4 w-4 text-red-500" /> por Alex Rodríguez © 2024
+            Hecho con <Heart className="h-4 w-4 text-red-500" /> por Wellington Bazurto © 2025
           </p>
         </div>
       </div>

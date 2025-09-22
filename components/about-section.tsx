@@ -39,8 +39,7 @@ export function AboutSection() {
             Acerca de <span className="text-primary">Mí</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Soy un desarrollador apasionado con más de 5 años de experiencia creando soluciones digitales innovadoras.
-            Me especializo en tecnologías modernas y siempre busco aprender algo nuevo.
+            He dedicado mi carrera a dominar el arte y la ciencia de la programación. Mi enfoque se centra en el desarrollo full stack, construyendo aplicaciones web completas y robustas. Desde el diseño de interfaces intuitivas hasta la optimización del rendimiento en el servidor, mi pasión es crear experiencias digitales fluidas y funcionales. Como desarrollador, valoro la innovación y la mejora continua, siempre explorando nuevas herramientas para ofrecer las mejores soluciones.
           </p>
         </div>
 
@@ -79,7 +78,7 @@ export function AboutSection() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-foreground font-medium">JavaScript/TypeScript</span>
-                    <span className="text-primary">95%</span>
+                    <span className="text-primary">75%</span>
                   </div>
                   <div className="w-full bg-background rounded-full h-2">
                     <div className="bg-primary h-2 rounded-full" style={{ width: "95%" }}></div>
@@ -87,7 +86,7 @@ export function AboutSection() {
 
                   <div className="flex justify-between items-center">
                     <span className="text-foreground font-medium">React/Next.js</span>
-                    <span className="text-primary">90%</span>
+                    <span className="text-primary">75%</span>
                   </div>
                   <div className="w-full bg-background rounded-full h-2">
                     <div className="bg-primary h-2 rounded-full" style={{ width: "90%" }}></div>
@@ -95,7 +94,7 @@ export function AboutSection() {
 
                   <div className="flex justify-between items-center">
                     <span className="text-foreground font-medium">Node.js/Python</span>
-                    <span className="text-primary">85%</span>
+                    <span className="text-primary">70%</span>
                   </div>
                   <div className="w-full bg-background rounded-full h-2">
                     <div className="bg-primary h-2 rounded-full" style={{ width: "85%" }}></div>
@@ -103,7 +102,7 @@ export function AboutSection() {
 
                   <div className="flex justify-between items-center">
                     <span className="text-foreground font-medium">Cloud/DevOps</span>
-                    <span className="text-primary">80%</span>
+                    <span className="text-primary">60%</span>
                   </div>
                   <div className="w-full bg-background rounded-full h-2">
                     <div className="bg-primary h-2 rounded-full" style={{ width: "80%" }}></div>

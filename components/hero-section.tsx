@@ -60,7 +60,7 @@ export function HeroSection() {
             {/* Social links */}
             <div className="flex gap-4 justify-center lg:justify-start">
               <a
-                href="https://github.com"
+                href="https://github.com/monchiviri27"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-card hover:bg-primary transition-all duration-200 hover:scale-110"
@@ -87,7 +87,7 @@ export function HeroSection() {
           {/* Profile image */}
           <div className="flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl">
                 <img
                   src="wellington-bazurto.jpg"
                   alt="Wellington Bazurto - Desarrollador Full Stack"
@@ -95,7 +95,7 @@ export function HeroSection() {
                 />
               </div>
               {/* Decorative ring */}
-              <div className="absolute -inset-4 rounded-full border border-primary/30 animate-pulse"></div>
+              <div className="absolute -inset-4 rounded-full border border-primary/100 animate-pulse"></div>
             </div>
           </div>
         </div>

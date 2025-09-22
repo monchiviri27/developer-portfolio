@@ -12,7 +12,7 @@ const projects = [
     image: "/modern-ecommerce-website-interface--clean-design.jpg",
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const projects = [
     image: "/task-management-dashboard--modern-ui--dark-theme.jpg",
     technologies: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const projects = [
     image: "/weather-dashboard-interface--charts--modern-design.jpg",
     technologies: ["Vue.js", "D3.js", "Express", "Weather API"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const projects = [
     image: "/analytics-dashboard--social-media-metrics--graphs.jpg",
     technologies: ["React", "Python", "FastAPI", "PostgreSQL"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const projects = [
     image: "/learning-platform-interface--courses--education.jpg",
     technologies: ["Next.js", "Supabase", "Tailwind", "Stripe"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const projects = [
     image: "/real-estate-website--property-listings--modern-des.jpg",
     technologies: ["React", "Node.js", "MongoDB", "Mapbox"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/monchiviri27",
   },
 ]
 
