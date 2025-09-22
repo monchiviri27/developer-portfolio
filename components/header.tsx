@@ -30,7 +30,7 @@ export function Header() {
     >
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
-          <div className="text-xl font-bold text-foreground">Alex Rodríguez</div>
+          <div className="text-xl font-bold text-foreground">Wellington Bazurto</div>
 
           <div className="hidden md:flex items-center space-x-8">
             <button

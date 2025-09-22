@@ -30,11 +30,11 @@ export function HeroSection() {
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-balance">
               <span className="text-foreground">Hola, soy</span>
               <br />
-              <span className="text-primary">Alex Rodríguez</span>
+              <span className="text-primary">Wellington Bazurto</span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-pretty max-w-2xl">
-              Desarrollador Full Stack especializado en crear experiencias web modernas y escalables con React, Node.js
+              Desarrollador Full Stack especializado en crear experiencias web modernas y escalables con React, Node.js, Typescript, Html, Css, Javascript, Wordpress
               y tecnologías cloud.
             </p>
 
@@ -89,8 +89,8 @@ export function HeroSection() {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
                 <img
-                  src="/professional-developer-headshot--modern--clean-bac.jpg"
-                  alt="Alex Rodríguez - Desarrollador Full Stack"
+                  src="wellington-bazurto.jpg"
+                  alt="Wellington Bazurto - Desarrollador Full Stack"
                   className="w-full h-full object-cover"
                 />
               </div>
