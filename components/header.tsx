@@ -2,51 +2,68 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
 import { Sun, Moon, Menu, X } from "lucide-react"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { setTheme, theme } = useTheme()
+  const [theme, setTheme] = useState('dark')
+
+  // Inicializar tema
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark'
+    setTheme(savedTheme)
+    applyTheme(savedTheme)
+  }, [])
 
   // Efecto para el scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Efecto para cerrar menú en resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false)
-      }
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  // Aplicar tema
+  const applyTheme = (newTheme: string) => {
+    const html = document.documentElement
 
-  // Efecto para prevenir scroll cuando el menú móvil está abierto
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
+    if (newTheme === 'dark') {
+      html.classList.add('dark')
+      // TEMA OSCURO
+      html.style.setProperty('--background', '#0f172a')
+      html.style.setProperty('--foreground', '#f1f5f9')
+      html.style.setProperty('--primary', '#60a5fa')
+      html.style.setProperty('--primary-foreground', '#0f172a')
+      html.style.setProperty('--border', '#334155')
+      html.style.setProperty('--card', '#1e293b')
+      html.style.setProperty('--accent', '#818cf8')
+      html.style.setProperty('--muted-foreground', '#94a3b8')
     } else {
-      document.body.style.overflow = 'unset'
+      html.classList.remove('dark')
+      // TEMA CLARO
+      html.style.setProperty('--background', '#ffffff')
+      html.style.setProperty('--foreground', '#1e293b')
+      html.style.setProperty('--primary', '#2563eb')
+      html.style.setProperty('--primary-foreground', '#ffffff')
+      html.style.setProperty('--border', '#cbd5e1')
+      html.style.setProperty('--card', '#f1f5f9')
+      // CAMBIO: Se ajusta el color del acento para que coincida con el primario
+      html.style.setProperty('--accent', '#2563eb')
+      html.style.setProperty('--muted-foreground', '#64748b')
     }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isMobileMenuOpen])
+
+    localStorage.setItem('portfolio-theme', newTheme)
+  }
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    applyTheme(newTheme)
+  }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" })
     setIsMobileMenuOpen(false)
   }
 
@@ -57,17 +74,28 @@ export function Header() {
   ]
 
   return (
-    <header
-      className={`
-        fixed top-0 left-0 right-0 z-50
-        transition-all duration-300
-        ${isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"}
-      `}
-    >
+    <header style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 50,
+      transition: 'all 0.3s',
+      // CAMBIO: Se elimina la transparencia inicial para que el menú móvil no se mezcle con el fondo
+      backgroundColor: 'var(--background)',
+      backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+      borderBottom: isScrolled ? '1px solid var(--border)' : 'none'
+    }}>
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-xl font-bold text-foreground">Wellington Bazurto</div>
+          <div style={{
+            fontSize: '1.25rem',
+            fontWeight: 'bold',
+            color: 'var(--foreground)'
+          }}>
+            Wellington Bazurto
+          </div>
 
           {/* Menú Desktop */}
           <div className="hidden md:flex items-center space-x-8">
@@ -75,10 +103,36 @@ export function Header() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-primary transition-colors relative group px-3 py-2"
+                style={{
+                  color: 'var(--foreground)',
+                  transition: 'color 0.3s',
+                  position: 'relative',
+                  padding: '0.5rem 0.75rem'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--primary)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--foreground)'
+                }}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-3 right-3 h-0.5 bg-primary transition-all transform scale-x-0 group-hover:scale-x-100" />
+                <span style={{
+                  position: 'absolute',
+                  bottom: '-0.25rem',
+                  left: '0.75rem',
+                  right: '0.75rem',
+                  height: '2px',
+                  backgroundColor: 'var(--primary)',
+                  transition: 'transform 0.3s',
+                  transform: 'scaleX(0)'
+                }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scaleX(1)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scaleX(0)'
+                  }} />
               </button>
             ))}
           </div>
@@ -89,18 +143,40 @@ export function Header() {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="relative"
+              onClick={toggleTheme}
+              style={{
+                position: 'relative',
+                borderColor: 'var(--border)'
+              }}
             >
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
+              <Sun style={{
+                height: '1.2rem',
+                width: '1.2rem',
+                transition: 'all 0.3s',
+                opacity: theme === 'light' ? 1 : 0,
+                transform: theme === 'light' ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(-90deg)'
+              }} />
+              <Moon style={{
+                position: 'absolute',
+                height: '1.2rem',
+                width: '1.2rem',
+                transition: 'all 0.3s',
+                opacity: theme === 'dark' ? 1 : 0,
+                transform: theme === 'dark' ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(90deg)'
+              }} />
             </Button>
 
             {/* Botón Contáctame - Desktop */}
             <Button
               onClick={() => scrollToSection("contact")}
-              className="hidden md:flex bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-lg transition-all duration-200 hover:scale-105"
+              className="hidden md:flex"
+              style={{
+                backgroundColor: 'var(--primary)',
+                color: 'var(--primary-foreground)',
+                padding: '0.5rem 1.5rem',
+                borderRadius: '0.5rem',
+                transition: 'all 0.2s'
+              }}
             >
               Contáctame
             </Button>
@@ -112,50 +188,58 @@ export function Header() {
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
           </div>
         </nav>
 
         {/* Menú Móvil */}
-        <div className={`
-          md:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-sm
-          transition-all duration-300 transform
-          ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}
-          z-40
-        `}>
-          <div className="container mx-auto px-6 py-8">
-            <div className="flex flex-col space-y-6">
+        <div style={{
+          position: 'fixed',
+          top: '4rem',
+          left: 0,
+          right: 0,
+          backgroundColor: 'var(--background)',
+          backdropFilter: 'blur(8px)',
+          borderBottom: '1px solid var(--border)',
+          transition: 'all 0.3s',
+          transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(100%)',
+          opacity: isMobileMenuOpen ? 1 : 0,
+          display: isMobileMenuOpen ? 'block' : 'none'
+        }}>
+          <div className="container mx-auto px-6 py-4">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-foreground hover:text-primary transition-colors py-3 text-left text-xl font-medium border-b border-border/50"
+                  style={{
+                    color: 'var(--foreground)',
+                    textAlign: 'left',
+                    padding: '0.75rem 0',
+                    fontSize: '1.125rem',
+                    fontWeight: 500,
+                    borderBottom: '1px solid var(--border)'
+                  }}
                 >
                   {item.label}
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection("contact")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg transition-all duration-200 mt-4 text-lg"
+                style={{
+                  backgroundColor: 'var(--primary)',
+                  color: 'var(--primary-foreground)',
+                  padding: '0.75rem',
+                  borderRadius: '0.5rem',
+                  marginTop: '0.5rem'
+                }}
               >
                 Contáctame
               </Button>
             </div>
           </div>
         </div>
-
-        {/* Overlay para móvil */}
-        {isMobileMenuOpen && (
-          <div 
-            className="md:hidden fixed inset-0 bg-black/50 z-30"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
       </div>
     </header>
   )

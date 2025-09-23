@@ -79,26 +79,26 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <Card
               key={project.id}
-              className="group bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up"
+              className="group bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up overflow-hidden p-0"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative overflow-hidden rounded-t-lg">
+              <div className="relative overflow-hidden">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110 rounded-t-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              <CardHeader>
+              <CardHeader className="p-6">
                 <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-200">
                   {project.title}
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">{project.description}</CardDescription>
               </CardHeader>
 
-              <CardContent>
+              <CardContent className="p-6 pt-0">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
@@ -119,9 +119,14 @@ export function ProjectsSection() {
                   </Button>
 
                   <Button size="sm" variant="outline" className="border-border hover:bg-card bg-transparent" asChild>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4" />
-                    </a>
+                    <a 
+  href={project.githubUrl} 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="transition-colors duration-200 text-foreground hover:text-primary"
+>
+  <Github className="h-4 w-4" />
+</a>
                   </Button>
                 </div>
               </CardContent>
