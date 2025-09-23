@@ -34,8 +34,7 @@ export function HeroSection() {
             </h1>
 
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-pretty max-w-2xl">
-              Desarrollador Full Stack especializado en crear experiencias web modernas y escalables con React, Node.js, Typescript, Html, Css, Javascript, Wordpress
-              y tecnologías cloud.
+              Desarrollador Full Stack especializado en experiencias web modernas con React y Node.js. Experto en la creación de soluciones escalables con TypeScript y despliegue en la nube.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">

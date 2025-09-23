@@ -54,9 +54,9 @@ const projects = [
     id: 6,
     title: "Real Estate Platform",
     description: "Plataforma inmobiliaria con búsqueda avanzada y tours virtuales 360°.",
-    image: "/real-estate-website--property-listings--modern-des.jpg",
+    image: "nba-blog.png",
     technologies: ["React", "Node.js", "MongoDB", "Mapbox"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://monchiviri27.github.io/nba-blog/",
     githubUrl: "https://github.com/monchiviri27",
   },
 ]
