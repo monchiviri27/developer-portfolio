@@ -97,7 +97,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Teléfono</p>
-                    <p className="text-muted-foreground">+34 652167668</p>
+                    <p className="text-muted-foreground">+34 000000000</p>
                   </div>
                 </div>
 
