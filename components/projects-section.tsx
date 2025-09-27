@@ -45,9 +45,9 @@ const projects = [
     id: 5,
     title: "Learning Management System",
     description: "Sistema de gestión de aprendizaje con cursos online y seguimiento de progreso.",
-    image: "/learning-platform-interface--courses--education.jpg",
+    image: "nfl-blog.png",
     technologies: ["Next.js", "Supabase", "Tailwind", "Stripe"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://blog-nfl.vercel.app/",
     githubUrl: "https://github.com/monchiviri27",
   },
   {

@@ -75,7 +75,7 @@ export function HeroSection() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:alex@example.com"
+                href="mailto:wellingtonbazurto.dev@gmail.com"
                 className="p-3 rounded-full bg-card hover:bg-primary transition-all duration-200 hover:scale-110"
               >
                 <Mail className="h-5 w-5" />
