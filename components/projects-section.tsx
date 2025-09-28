@@ -34,11 +34,11 @@ const projects = [
   },
   {
     id: 4,
-    title: "Social Media Analytics",
+    title: "Pool Tournament Manager",
     description: "Herramienta de análisis de redes sociales con métricas avanzadas y reportes.",
     image: "/analytics-dashboard--social-media-metrics--graphs.jpg",
     technologies: ["React", "Python", "FastAPI", "PostgreSQL"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://pool-tournament-manager.vercel.app/",
     githubUrl: "https://github.com/monchiviri27",
   },
   {
