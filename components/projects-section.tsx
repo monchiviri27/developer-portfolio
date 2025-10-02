@@ -16,11 +16,11 @@ const projects = [
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "Aplicación de gestión de tareas con funcionalidades colaborativas y tiempo real.",
-    image: "/task-management-dashboard--modern-ui--dark-theme.jpg",
-    technologies: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
-    liveUrl: "https://example.com",
+    title: "Portafolio De Maquillaje",
+    description: "Este es un portafolio digital de alta velocidad para Luxury Makeup, maquillaje profesional.",
+    image: "lurury-makeup.png",
+    technologies: ["Astro", "TypeScript", "Markdown", "Tailwind"],
+    liveUrl: "https://maquillaje-portfolio.vercel.app/",
     githubUrl: "https://github.com/monchiviri27",
   },
   {
